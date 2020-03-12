@@ -1,6 +1,6 @@
 package models;
 
-public abstract class Book extends Item {
+public abstract class Book extends Item{
     private int _numberpages;
 
     public int get_numberpages() {

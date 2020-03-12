@@ -1,6 +1,8 @@
 import models.*;
 
 import javax.mail.MessagingException;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,9 +16,51 @@ public class Program {
         Address shippingAddress;
         String paymentMethod;
 
-        Usermanager.addUsers(um.get_users());
+        User user1 = new User(0, "Philipp", "Schuler", 13, 5, 2003, "schulerp03@gmail.com", Gender.male);
+        Address address1 = new Address("Kreuzbichlstraße", "57", "6112", "Wattens", "Austria", 0);
+        Address address2 = new Address("Anichstraße", "26-28", "6020", "Innsbruck", "Austria", 1);
+        user1.get_addresses().add(address1);
+        user1.get_addresses().add(address2);
 
-        Catalog.addItems(catalog);
+        User user2 = new User(1, "Anna-Maria", "Tipotsch", 20, 3, 2003, "annamaria@tsn.at", Gender.female);
+        Address address3 = new Address("Zillertalstraße", "84b", "1337", "Zillertal", "Austria", 0);
+        Address address4 = new Address("Georgenweg", "4a", "6100", "Telfs", "Austria", 1);
+        user2.get_addresses().add(address3);
+        user2.get_addresses().add(address4);
+
+        ArrayList<User> users = new ArrayList<User>();
+        users.add(user1);
+        users.add(user2);
+
+        Item laptop = new Laptop("EL001", 699.00, Category.Electronics, "Aspire 5", "Acer", 2.76, "1920x1080", 4100, false);
+        Item phone = new Phone ( "EL002", 549.00, Category.Electronics,"iPhone 8", "Apple", 0.148, "1920x1080" ,3100, OperatingSystem.iOS);
+        Item professionalFilm = new ProfessionalFilm("VD001", 12.99, Category.Video, "Guardians of the Galaxy", "Marvel Studios", 7500, "James Gunn");
+        Item tutorial = new Tutorial("VD002", 4.99, Category.Video, "How to code in Java", "Skillshare", 5000, 4.5);
+        Item novel = new Novel("BK001", 10.99, Category.Book, "Harry Potter and the Philosopher's Stone", "Scholastic Corporation", 0.7, 233, "Joanne K. Rowling");
+        List<Language> languages = new ArrayList<>();
+        languages.add(Language.German);
+        languages.add(Language.English);
+        Item manual = new manual("BK002", 50.0, Category.Book, "Dungeons & Dragons Monster manual", "Chris Sims", 1.7, 150, languages);
+
+        ArrayList<Item> items = new ArrayList<Item>();
+        items.add(laptop);
+        items.add(phone);
+        items.add(professionalFilm);
+        items.add(tutorial);
+        items.add(novel);
+        items.add(manual);
+
+        // Usermanager.addUsers(um.get_users()); TODO get users from file users.bin
+        // Catalog.addItems(catalog); TODO get items from items.bin
+
+        String usersFile = "users.bin";
+        String itemsFile = "items.bin";
+
+        overwriteUsersFile(users);
+        um.set_users(FileManager.deserializeUsers(usersFile));
+
+        overwriteItemsFile(items);
+        catalog.set_items(FileManager.deserializeItems(itemsFile));
 
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
@@ -481,4 +525,17 @@ public class Program {
         }while (answer == 'f');
          return value;
      }
+
+     private static void overwriteUsersFile(ArrayList<User> users){
+         FileManager.deleteFile("users.bin");
+         FileManager.createFile("users.bin");
+         FileManager.serializeUsers("users.bin", users);
+     }
+
+     private static void overwriteItemsFile(ArrayList<Item> items){
+        FileManager.deleteFile("items.bin");
+        FileManager.createFile("items.bin");
+        FileManager.serializeItems("items.bin", items);
+     }
+
 }

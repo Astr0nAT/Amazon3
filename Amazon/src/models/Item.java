@@ -1,6 +1,8 @@
 package models;
 
-public abstract class Item {
+import java.io.Serializable;
+
+public abstract class Item implements Serializable {
     private String _itemNumber;
     private double _price;
     private Category _category;

@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 public class Usermanager {
 
-    private static Scanner reader = new Scanner(System.in);
+    private transient static Scanner reader = new Scanner(System.in);
 
-    private List<User> _users = new ArrayList<User>();
+    private ArrayList<User> _users = new ArrayList<User>();
     private int _currentUser;
 
     public int get_currentUser() {
@@ -21,11 +21,13 @@ public class Usermanager {
     public List<User> get_users(){
         return _users;
     }
+    public void set_users(ArrayList<User> users){
+        this._users = users;
+    }
 
     public void add_user(User user){
         this.get_users().add(user);
     }
-
     public void remove_user(int userNumber){
         for(User u : this.get_users()){
             if(u.get_userNumber() == userNumber){
@@ -35,20 +37,8 @@ public class Usermanager {
     }
 
     public static void addUsers(List<User> users){
-        User user1 = new User(0, "Philipp", "Schuler", 13, 5, 2003, "schulerp03@gmail.com", Gender.male);
-        Address address1 = new Address("Kreuzbichlstraße", "57", "6112", "Wattens", "Austria", 0);
-        Address address2 = new Address("Anichstraße", "26-28", "6020", "Innsbruck", "Austria", 1);
-        user1.get_addresses().add(address1);
-        user1.get_addresses().add(address2);
 
-        User user2 = new User(1, "Anna-Maria", "Tipotsch", 20, 3, 2003, "annamaria@tsn.at", Gender.female);
-        Address address3 = new Address("Zillertalstraße", "84b", "1337", "Zillertal", "Austria", 0);
-        Address address4 = new Address("Georgenweg", "4a", "6100", "Telfs", "Austria", 1);
-        user2.get_addresses().add(address3);
-        user2.get_addresses().add(address4);
 
-        users.add(user1);
-        users.add(user2);
     }
 
     public static int chooseUser(Usermanager um){
@@ -229,7 +219,7 @@ public class Usermanager {
         this(new ArrayList<User>(), 0);
     }
 
-    public Usermanager(List<User> users, int currentUser){
+    public Usermanager(ArrayList<User> users, int currentUser){
         this._users = users;
         this.set_currentUser(currentUser);
     }

@@ -1,8 +1,9 @@
 package models;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Address {
+public class Address implements Serializable {
     private String _street;
     private String _housenumber;
     private String _zipcode;
@@ -52,7 +53,7 @@ public class Address {
         this._idAddress = idAddress;
     }
 
-    private static Scanner reader = new Scanner(System.in);
+    private transient static Scanner reader = new Scanner(System.in);
 
     public static Address create_address(int addressSize){
         String street, housenumber, zipcode, city, state;

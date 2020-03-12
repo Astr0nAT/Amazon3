@@ -1,10 +1,11 @@
 package models;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ShoppingCart {
+public class ShoppingCart implements Serializable {
     private List<ItemCart> _items = new ArrayList<ItemCart>();
     private double _totalPrice;
 
@@ -29,7 +30,7 @@ public class ShoppingCart {
         this.get_items().add(new ItemCart(item, amount));
     }
 
-    private Scanner reader = new Scanner(System.in);
+    private transient Scanner reader = new Scanner(System.in);
 
     public void chooseItem(String itemnumber, Catalog catalog){
         boolean addAmountBool = false;
