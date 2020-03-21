@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Usermanager {
+public class UserManager {
 
     private transient static Scanner reader = new Scanner(System.in);
 
@@ -30,7 +30,7 @@ public class Usermanager {
     }
     public void remove_user(int userNumber){
         for(User u : this.get_users()){
-            if(u.get_userNumber() == userNumber){
+            if(u.get_userID() == userNumber){
                 this.get_users().remove(u);
             }
         }
@@ -57,7 +57,7 @@ public class Usermanager {
         return exampleUsers;
     }
 
-    public static int chooseUser(Usermanager um){
+    public static int chooseUser(UserManager um){
         int choiceUser;
         boolean repeat;
 
@@ -144,7 +144,7 @@ public class Usermanager {
        }
      }
 
-     public static void showOneUser(Usermanager um){
+     public static void showOneUser(UserManager um){
         System.out.println("\n" + um.get_users().get(um.get_currentUser()).toString() + "\n");
      }
 
@@ -231,11 +231,11 @@ public class Usermanager {
         return new User(get_users().size(), firstname, lastname, day, month, year, email, gender);
     }
 
-    public Usermanager(){
+    public UserManager(){
         this(new ArrayList<User>(), 0);
     }
 
-    public Usermanager(ArrayList<User> users, int currentUser){
+    public UserManager(ArrayList<User> users, int currentUser){
         this._users = users;
         this.set_currentUser(currentUser);
     }

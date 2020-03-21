@@ -4,7 +4,11 @@ import java.util.*;
 import java.io.*;
 import models.*;
 
-public class FileManager {
+public class FileManager extends DataManager{
+    @Override
+    public char get_type(){
+        return 'f';
+    }
 
     public static void createFile(String filename){
         try{
@@ -14,7 +18,6 @@ public class FileManager {
             System.out.println("IO-Exception");
         }
     }
-
     public static void deleteFile(String filename) {
         try{
             Files.delete(Paths.get(filename));
@@ -25,7 +28,7 @@ public class FileManager {
         }
     }
 
-    public static void serializeUsers(String filename, ArrayList<User> users){
+    public static void saveUsers(String filename, ArrayList<User> users){
         try(FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(users);
@@ -34,7 +37,7 @@ public class FileManager {
             System.out.println("IO-Exception");
         }
     }
-    public static ArrayList<User> deserializeUsers(String filename){
+    public static ArrayList<User> loadUsers(String filename){
         try(FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream ois = new ObjectInputStream(fis)){
             return (ArrayList<User>)ois.readObject();
@@ -48,7 +51,7 @@ public class FileManager {
         return null;
     }
 
-    public static void serializeItems(String filename, ArrayList<Item> items){
+    public static void saveItems(String filename, ArrayList<Item> items){
         try(FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(items);
@@ -57,7 +60,7 @@ public class FileManager {
             System.out.println("IO-Exception");
         }
     }
-    public static ArrayList<Item> deserializeItems(String filename){
+    public static ArrayList<Item> loadItems(String filename){
         try(FileInputStream fis = new FileInputStream(filename);
             ObjectInputStream ois = new ObjectInputStream(fis)){
             return (ArrayList<Item>)ois.readObject();

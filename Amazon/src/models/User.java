@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User implements Serializable {
-    private int _userNumber;
+    private int _userID;
     private String _firstname;
     private String _lastname;
     private Date _birthdate;
@@ -22,11 +22,11 @@ public class User implements Serializable {
         this._shoppingCart = _shoppingCart;
     }
 
-    public int get_userNumber() {
-        return _userNumber;
+    public int get_userID() {
+        return _userID;
     }
-    public void set_userNumber(int userNumber) {
-        this._userNumber = userNumber;
+    public void set_userID(int userNumber) {
+        this._userID = userNumber;
     }
 
     public String get_firstname() {
@@ -74,7 +74,7 @@ public class User implements Serializable {
         this.set_shoppingCart(new ShoppingCart());
     }
     public User(int userNumber, String firstname, String lastname, int day, int month, int year, String email, Gender gender) {
-        this.set_userNumber(userNumber);
+        this.set_userID(userNumber);
         this.set_firstname(firstname);
         this.set_lastname(lastname);
         this.set_birthdate(new Date(day, month, year));
@@ -85,7 +85,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        String s = "User-Nr: " + this.get_userNumber() + "\n" +
+        String s = "User-Nr: " + this.get_userID() + "\n" +
                 "Name: " + this.get_firstname() + " " + this.get_lastname() + "\n" +
                 "Birthdate: " + this.get_birthdate().toString() + "\n" +
                 "Gender: " + this.get_gender() + "\n" +
@@ -106,11 +106,11 @@ public class User implements Serializable {
 
 
     public String toStringShort(){
-        return "User-Nr: " + this.get_userNumber() + "\n" +
+        return "User-Nr: " + this.get_userID() + "\n" +
                 "Name: " + this.get_firstname() + " " + this.get_lastname() + "\n";
     }
 
-    public String toAddressString(Usermanager um){
+    public String toAddressString(UserManager um){
         String s = "";
         for(Address a : um.get_users().get(um.get_currentUser()).get_addresses()){
             s += "------------------------\n" + a.toString();

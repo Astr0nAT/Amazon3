@@ -9,7 +9,7 @@ public class Address implements Serializable {
     private String _zipcode;
     private String _city;
     private String _state;
-    private int _idAddress;
+    private int _addressID;
 
     public String get_street() {
         return _street;
@@ -46,11 +46,11 @@ public class Address implements Serializable {
         this._state = state;
     }
 
-    public int get_idAddress() {
-        return _idAddress;
+    public int get_addressID() {
+        return _addressID;
     }
-    public void set_idAddress(int idAddress) {
-        this._idAddress = idAddress;
+    public void set_addressID(int idAddress) {
+        this._addressID = idAddress;
     }
 
     private transient static Scanner reader = new Scanner(System.in);
@@ -109,12 +109,12 @@ public class Address implements Serializable {
         this.set_zipcode(zipcode);
         this.set_city(city);
         this.set_state(state);
-        this.set_idAddress(idAddress);
+        this.set_addressID(idAddress);
     }
 
     @Override
     public String toString(){
-        return "Address number: " + this.get_idAddress() + "\n" +
+        return "Address number: " + this.get_addressID() + "\n" +
                 this.get_street() + " " + this.get_housenumber() + "\n" +
                 this.get_zipcode() + " " + this.get_city() + "\n" +
                 this.get_state() + "\n";

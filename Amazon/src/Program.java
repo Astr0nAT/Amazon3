@@ -1,6 +1,5 @@
 import models.*;
 
-import javax.mail.MessagingException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,33 +9,39 @@ public class Program {
 
     public static void main(String[] args) {
 
-        Usermanager um = new Usermanager();
+        UserManager um = new UserManager();
         Catalog catalog = new Catalog();
         Address shippingAddress;
         String paymentMethod;
+        DataManager manager = new FileManager();
 
-        String usersFilename = "users.bin";
-        String itemsFilename = "items.bin";
+        if(manager.get_type() == 'f'){
+            String usersFilename = "users.bin";
+            String itemsFilename = "items.bin";
 
-        File usersFile = new File("./users.bin");
-        File itemsFile = new File("./items.bin");
+            File usersFile = new File("./users.bin");
+            File itemsFile = new File("./items.bin");
 
-        if(usersFile.exists()){
-            um.set_users(FileManager.deserializeUsers(usersFilename));
-            System.out.println("Loaded users from file.");
+            if(usersFile.exists()){
+                um.set_users(FileManager.loadUsers(usersFilename));
+                System.out.println("Loaded users from file.");
+            }
+            else{
+                overwriteUsersFile(um.createExampleUsers());
+                System.out.println("Loaded users from program. File \"users.bin\" could not be found. Missing file has been created automatically.");
+            }
+
+            if(itemsFile.exists()){
+                catalog.set_items(FileManager.loadItems(itemsFilename));
+                System.out.println("Loaded items from file.");
+            }
+            else{
+                overwriteItemsFile(catalog.createExampleItems());
+                System.out.println("Loaded items from program. File \"items.bin\" could not be found. Missing file has been created automatically.");
+            }
         }
         else{
-            overwriteUsersFile(um.createExampleUsers());
-            System.out.println("Loaded users from program. File \"users.bin\" could not be found. Missing file has been created automatically.");
-        }
 
-        if(itemsFile.exists()){
-            catalog.set_items(FileManager.deserializeItems(itemsFilename));
-            System.out.println("Loaded items from file.");
-        }
-        else{
-            overwriteItemsFile(catalog.createExampleItems());
-            System.out.println("Loaded items from program. File \"items.bin\" could not be found. Missing file has been created automatically.");
         }
 
         switchForStartup(showStartupMenu(), um);
@@ -98,7 +103,7 @@ public class Program {
         epicCountdown();
     }
 
-    private static Address chooseShippingAddress(Usermanager um) {
+    private static Address chooseShippingAddress(UserManager um) {
         char choice;
 
         Address shippingAddress = new Address();
@@ -179,7 +184,7 @@ public class Program {
         return reader.next().toLowerCase().charAt(0);
     }
 
-    private static void switchForStartup(char choice, Usermanager um){
+    private static void switchForStartup(char choice, UserManager um){
         while(choice != 'n' && choice != 'e'){
             System.out.println("Wrong input!\n");
             System.out.print("Choice: ");
@@ -190,11 +195,11 @@ public class Program {
             case 'n':
                 User user = um.create_user();
                 um.add_user(user);
-                um.set_currentUser(user.get_userNumber());
+                um.set_currentUser(user.get_userID());
                 break;
             case 'e':
                 System.out.println("\n" + um.toStringShort());
-                um.set_currentUser(Usermanager.chooseUser(um));
+                um.set_currentUser(UserManager.chooseUser(um));
                 System.out.println();
                 break;
         }
@@ -207,7 +212,7 @@ public class Program {
         return reader.next().toLowerCase().charAt(0);
     }
 
-    private static void switchForMain(char choice, Catalog catalog, ShoppingCart sc, Usermanager um){
+    private static void switchForMain(char choice, Catalog catalog, ShoppingCart sc, UserManager um){
         while(choice != 'i' && choice != 'u'){
             System.out.println("Wrong input!\n");
             System.out.print("Choice: ");
@@ -321,7 +326,7 @@ public class Program {
         return reader.next().toLowerCase().charAt(0);
     }
 
-    private static void switchForUser(char choice, Usermanager um){
+    private static void switchForUser(char choice, UserManager um){
         while(choice != 'c' && choice != 'e' && choice != 'a' && choice != 's' && choice != 'u'){
             System.out.println("Wrong input!\n");
             System.out.print("Choice: ");
@@ -331,7 +336,7 @@ public class Program {
         switch(choice){
             case 'c':
                 System.out.println(um.toStringShort());
-                um.set_currentUser(Usermanager.chooseUser(um));
+                um.set_currentUser(UserManager.chooseUser(um));
                 System.out.println(um.printCurrentUser());
                 break;
             case 'e':
@@ -345,7 +350,7 @@ public class Program {
                     choiceUser = reader.nextInt();
                 }
 
-                Usermanager.editUser(Usermanager.editableFieldMenu(), um.get_users().get(choiceUser));
+                UserManager.editUser(UserManager.editableFieldMenu(), um.get_users().get(choiceUser));
                 break;
             case 'a':
                 User user = um.create_user();
@@ -355,7 +360,7 @@ public class Program {
                 System.out.println(um.toString());
                 break;
             case 'u':
-                Usermanager.showOneUser(um);
+                UserManager.showOneUser(um);
         }
     }
 
@@ -507,13 +512,13 @@ public class Program {
      private static void overwriteUsersFile(ArrayList<User> users){
          FileManager.deleteFile("users.bin");
          FileManager.createFile("users.bin");
-         FileManager.serializeUsers("users.bin", users);
+         FileManager.saveUsers("users.bin", users);
      }
 
      private static void overwriteItemsFile(ArrayList<Item> items){
         FileManager.deleteFile("items.bin");
         FileManager.createFile("items.bin");
-        FileManager.serializeItems("items.bin", items);
+        FileManager.saveItems("items.bin", items);
      }
 
 }
