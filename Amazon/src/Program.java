@@ -1,7 +1,6 @@
 import models.*;
 
 import javax.mail.MessagingException;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,58 +8,36 @@ import java.util.Scanner;
 
 public class Program {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         Usermanager um = new Usermanager();
         Catalog catalog = new Catalog();
         Address shippingAddress;
         String paymentMethod;
 
-        User user1 = new User(0, "Philipp", "Schuler", 13, 5, 2003, "schulerp03@gmail.com", Gender.male);
-        Address address1 = new Address("Kreuzbichlstraße", "57", "6112", "Wattens", "Austria", 0);
-        Address address2 = new Address("Anichstraße", "26-28", "6020", "Innsbruck", "Austria", 1);
-        user1.get_addresses().add(address1);
-        user1.get_addresses().add(address2);
+        String usersFilename = "users.bin";
+        String itemsFilename = "items.bin";
 
-        User user2 = new User(1, "Anna-Maria", "Tipotsch", 20, 3, 2003, "annamaria@tsn.at", Gender.female);
-        Address address3 = new Address("Zillertalstraße", "84b", "1337", "Zillertal", "Austria", 0);
-        Address address4 = new Address("Georgenweg", "4a", "6100", "Telfs", "Austria", 1);
-        user2.get_addresses().add(address3);
-        user2.get_addresses().add(address4);
+        File usersFile = new File("./users.bin");
+        File itemsFile = new File("./items.bin");
 
-        ArrayList<User> users = new ArrayList<User>();
-        users.add(user1);
-        users.add(user2);
+        if(usersFile.exists()){
+            um.set_users(FileManager.deserializeUsers(usersFilename));
+            System.out.println("Loaded users from file.");
+        }
+        else{
+            overwriteUsersFile(um.createExampleUsers());
+            System.out.println("Loaded users from program. File \"users.bin\" could not be found. Missing file has been created automatically.");
+        }
 
-        Item laptop = new Laptop("EL001", 699.00, Category.Electronics, "Aspire 5", "Acer", 2.76, "1920x1080", 4100, false);
-        Item phone = new Phone ( "EL002", 549.00, Category.Electronics,"iPhone 8", "Apple", 0.148, "1920x1080" ,3100, OperatingSystem.iOS);
-        Item professionalFilm = new ProfessionalFilm("VD001", 12.99, Category.Video, "Guardians of the Galaxy", "Marvel Studios", 7500, "James Gunn");
-        Item tutorial = new Tutorial("VD002", 4.99, Category.Video, "How to code in Java", "Skillshare", 5000, 4.5);
-        Item novel = new Novel("BK001", 10.99, Category.Book, "Harry Potter and the Philosopher's Stone", "Scholastic Corporation", 0.7, 233, "Joanne K. Rowling");
-        List<Language> languages = new ArrayList<>();
-        languages.add(Language.German);
-        languages.add(Language.English);
-        Item manual = new manual("BK002", 50.0, Category.Book, "Dungeons & Dragons Monster manual", "Chris Sims", 1.7, 150, languages);
-
-        ArrayList<Item> items = new ArrayList<Item>();
-        items.add(laptop);
-        items.add(phone);
-        items.add(professionalFilm);
-        items.add(tutorial);
-        items.add(novel);
-        items.add(manual);
-
-        // Usermanager.addUsers(um.get_users()); TODO get users from file users.bin
-        // Catalog.addItems(catalog); TODO get items from items.bin
-
-        String usersFile = "users.bin";
-        String itemsFile = "items.bin";
-
-        overwriteUsersFile(users);
-        um.set_users(FileManager.deserializeUsers(usersFile));
-
-        overwriteItemsFile(items);
-        catalog.set_items(FileManager.deserializeItems(itemsFile));
+        if(itemsFile.exists()){
+            catalog.set_items(FileManager.deserializeItems(itemsFilename));
+            System.out.println("Loaded items from file.");
+        }
+        else{
+            overwriteItemsFile(catalog.createExampleItems());
+            System.out.println("Loaded items from program. File \"items.bin\" could not be found. Missing file has been created automatically.");
+        }
 
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
@@ -107,7 +84,7 @@ public class Program {
                 um.get_users().get(um.get_currentUser()).get_shoppingCart().toString() + "\n" +
                 "Payment method: " + paymentMethod + "\n";
 
-
+        /*
         // String "fullinfo" wäre der komplette Inhalt der Email mit allen Informationen
         try {
             System.out.println("Trying to send email.\n");
@@ -117,6 +94,7 @@ public class Program {
             System.out.println(m.toString());
         }
         // es wird immer eine fehler mit der exception ausgeworfen, sollte so aber funktionieren
+         */
         epicCountdown();
     }
 

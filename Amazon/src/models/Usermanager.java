@@ -36,9 +36,25 @@ public class Usermanager {
         }
     }
 
-    public static void addUsers(List<User> users){
+    public ArrayList<User> createExampleUsers(){
+        ArrayList<User> exampleUsers = new ArrayList<User>();
+        User user1 = new User(0, "Philipp", "Schuler", 13, 5, 2003, "schulerp03@gmail.com", Gender.male);
+        Address address1 = new Address("Kreuzbichlstraße", "57", "6112", "Wattens", "Austria", 0);
+        Address address2 = new Address("Anichstraße", "26-28", "6020", "Innsbruck", "Austria", 1);
+        user1.get_addresses().add(address1);
+        user1.get_addresses().add(address2);
 
+        User user2 = new User(1, "Anna-Maria", "Tipotsch", 20, 3, 2003, "annamaria@tsn.at", Gender.female);
+        Address address3 = new Address("Zillertalstraße", "84b", "1337", "Zillertal", "Austria", 0);
+        Address address4 = new Address("Georgenweg", "4a", "6100", "Telfs", "Austria", 1);
+        user2.get_addresses().add(address3);
+        user2.get_addresses().add(address4);
 
+        exampleUsers.add(user1);
+        exampleUsers.add(user2);
+
+        this.set_users(exampleUsers);
+        return exampleUsers;
     }
 
     public static int chooseUser(Usermanager um){

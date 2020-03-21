@@ -1,6 +1,5 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.*;
 import java.io.*;
 import models.*;
@@ -19,10 +18,10 @@ public class FileManager {
     public static void deleteFile(String filename) {
         try{
             Files.delete(Paths.get(filename));
-            System.out.println("Datei gelöscht!");
+            System.out.println("File deleted!");
         }
         catch(IOException e){
-            System.out.println("Datei existiert nicht!");
+            System.out.println("File does not exist.");
         }
     }
 
@@ -41,7 +40,7 @@ public class FileManager {
             return (ArrayList<User>)ois.readObject();
         }
         catch(ClassNotFoundException e){
-            System.out.println("Klasse nicht gefunden");
+            System.out.println("Class not found.");
         }
         catch(IOException e){
             System.out.println("IO-Exception");
@@ -55,7 +54,7 @@ public class FileManager {
             oos.writeObject(items);
         }
         catch(IOException e){
-            e.printStackTrace();
+            System.out.println("IO-Exception");
         }
     }
     public static ArrayList<Item> deserializeItems(String filename){
@@ -64,7 +63,7 @@ public class FileManager {
             return (ArrayList<Item>)ois.readObject();
         }
         catch(ClassNotFoundException e){
-            System.out.println("Klasse nicht gefunden");
+            System.out.println("Class not found.");
         }
         catch(IOException e){
             System.out.println("IO-Exception");
