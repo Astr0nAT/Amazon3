@@ -18,7 +18,7 @@ public class UserManager {
         this._currentUser = currentUser;
     }
 
-    public List<User> get_users(){
+    public ArrayList<User> get_users(){
         return _users;
     }
     public void set_users(ArrayList<User> users){

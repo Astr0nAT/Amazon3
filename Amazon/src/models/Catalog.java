@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Catalog {
-    private List<Item> _items = new ArrayList<Item>();
+    private ArrayList<Item> _items = new ArrayList<Item>();
 
-    public List<Item> get_items() {
+    public ArrayList<Item> get_items() {
         return _items;
     }
-    public void set_items(List<Item> items){
+    public void set_items(ArrayList<Item> items){
         _items = items;
     }
 
@@ -17,7 +17,7 @@ public class Catalog {
         this(new ArrayList<Item>());
     }
 
-    public Catalog(List<Item> items){
+    public Catalog(ArrayList<Item> items){
         set_items(items);
     }
 

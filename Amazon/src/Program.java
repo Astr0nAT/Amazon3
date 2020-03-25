@@ -7,42 +7,17 @@ import java.util.Scanner;
 
 public class Program {
 
+    static Data manager = new DataFile();
+
     public static void main(String[] args) {
 
         UserManager um = new UserManager();
         Catalog catalog = new Catalog();
         Address shippingAddress;
         String paymentMethod;
-        DataManager manager = new FileManager();
 
-        if(manager.get_type() == 'f'){
-            String usersFilename = "users.bin";
-            String itemsFilename = "items.bin";
-
-            File usersFile = new File("./users.bin");
-            File itemsFile = new File("./items.bin");
-
-            if(usersFile.exists()){
-                um.set_users(FileManager.loadUsers(usersFilename));
-                System.out.println("Loaded users from file.");
-            }
-            else{
-                overwriteUsersFile(um.createExampleUsers());
-                System.out.println("Loaded users from program. File \"users.bin\" could not be found. Missing file has been created automatically.");
-            }
-
-            if(itemsFile.exists()){
-                catalog.set_items(FileManager.loadItems(itemsFilename));
-                System.out.println("Loaded items from file.");
-            }
-            else{
-                overwriteItemsFile(catalog.createExampleItems());
-                System.out.println("Loaded items from program. File \"items.bin\" could not be found. Missing file has been created automatically.");
-            }
-        }
-        else{
-
-        }
+        manager.loadUsers("users.bin", um);
+        manager.loadItems("items.bin", catalog);
 
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
@@ -509,16 +484,6 @@ public class Program {
          return value;
      }
 
-     private static void overwriteUsersFile(ArrayList<User> users){
-         FileManager.deleteFile("users.bin");
-         FileManager.createFile("users.bin");
-         FileManager.saveUsers("users.bin", users);
-     }
 
-     private static void overwriteItemsFile(ArrayList<Item> items){
-        FileManager.deleteFile("items.bin");
-        FileManager.createFile("items.bin");
-        FileManager.saveItems("items.bin", items);
-     }
 
 }
