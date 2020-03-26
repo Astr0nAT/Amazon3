@@ -16,13 +16,14 @@ public class Program {
         Address shippingAddress;
         String paymentMethod;
         ArrayList<User> users = new ArrayList<User>();
+        ArrayList<Item> items = new ArrayList<Item>();
 
         manager.loadUsers(um);
         manager.loadItems(catalog);
 
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
-        manager.saveUsers(users);
+
 
         boolean addAnotherItem, dataRight;
         char choice;
@@ -77,6 +78,9 @@ public class Program {
         }
         // es wird immer eine fehler mit der exception ausgeworfen, sollte so aber funktionieren
          */
+        users = um.get_users();
+        manager.saveUsers(users);
+        manager.saveItems(items);
         epicCountdown();
     }
 
