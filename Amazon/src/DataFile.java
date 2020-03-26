@@ -29,10 +29,10 @@ public class DataFile implements Data{
         }
     }
 
-    public void saveUsers(String filename, UserManager um){
+    public void saveUsers(String filename, ArrayList<User> users){
         try(FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
-            oos.writeObject(um.set_users(ArrayList<User> ));
+            oos.writeObject(users);
         }
         catch(IOException e){
             System.out.println("IO-Exception");
@@ -93,14 +93,13 @@ public class DataFile implements Data{
         }
     }
 
-<<<<<<< HEAD
+
     public void createUsersFile(ArrayList<User> users){
         createFile("users.bin");
         saveUsers("users.bin", users);
     }
 
-    public void overwriteUsersFile(ArrayList<User> users){
-=======
+    public void overwriteUsersFile(ArrayList<User> users)
     @Override
     public boolean checkIfUserDataAvailable() {
         return false;
@@ -110,21 +109,17 @@ public class DataFile implements Data{
         createFile("users.bin");
         saveUsers("users.bin", users);
     }
-    public static void overwriteUsersFile(ArrayList<User> users){
->>>>>>> 6803a327dd53c1b13dd9aa0e70a723b4b1defc08
-        deleteFile("users.bin");
-        createUsersFile(users);
-    }
+
     private static void createItemsFile(ArrayList<Item> items){
         createFile("items.bin");
         saveItems("items.bin", items);
     }
-<<<<<<< HEAD
+
 
     public void overwriteItemsFile(ArrayList<User> items){
-=======
+
     public static void overwriteItemsFile(ArrayList<User> items){
->>>>>>> 6803a327dd53c1b13dd9aa0e70a723b4b1defc08
+
         deleteFile("items.bin");
         createUsersFile(items);
     }
