@@ -24,7 +24,7 @@ public class Program {
 
         manager.loadShoppingcart(getCurrentShoppingCart(um), um);
 
-        um.add_user(new User(2, "Moritz", "Laichner", 28, 8, 2003, "mouw@laichner.com", Gender.male));
+        um.add_user(new User(new Random().nextInt(99999), "Moritz", "Laichner", 28, 8, 2003, "mouw@laichner.com", Gender.male));
         catalog.get_items().add(new Phone("testingNUMBER", 999.99, Category.Electronics,
                 "testingNAME", "testingBRAND", 9.99, "testingRESOLUTION",
                 new Random().nextInt(9999), OperatingSystem.EMUI) {
