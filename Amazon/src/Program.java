@@ -24,6 +24,7 @@ public class Program {
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
 
+        manager.loadShoppingcart();
 
         boolean addAnotherItem, dataRight;
         char choice;
@@ -491,6 +492,8 @@ public class Program {
          return value;
      }
 
-
+     private static ShoppingCart getCurrentUsersShoppingCart(UserManager um){
+        return um.get_users().get(um.get_currentUser()).get_shoppingCart();
+     }
 
 }
