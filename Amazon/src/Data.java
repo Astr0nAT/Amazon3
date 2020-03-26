@@ -9,7 +9,7 @@ public interface Data {
 
     void loadUsers(UserManager um);
     void loadItems(Catalog catalog);
-    void loadShoppingcart(ShoppingCart sc);
+    void loadShoppingcart(ShoppingCart sc, UserManager um);
 
     boolean checkIfUserDataAvailable();
 
