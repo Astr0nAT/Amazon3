@@ -16,8 +16,10 @@ public class Program {
         Address shippingAddress;
         String paymentMethod;
 
-        manager.loadUsers("users.bin", um);
-        manager.loadItems("items.bin", catalog);
+        manager.loadUsers(um);
+        manager.loadItems(catalog);
+
+
 
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());

@@ -39,9 +39,9 @@ public class DataFile implements Data{
         }
     }
     @Override
-    public void loadUsers(String filename, UserManager um){
+    public void loadUsers(UserManager um){
         if(usersFile.exists()){
-            try(FileInputStream fis = new FileInputStream(filename);
+            try(FileInputStream fis = new FileInputStream("users.bin");
                 ObjectInputStream ois = new ObjectInputStream(fis)){
                 um.set_users((ArrayList<User>)ois.readObject());
                 System.out.println("Loaded users from file");
@@ -71,9 +71,9 @@ public class DataFile implements Data{
         }
     }
     @Override
-    public void loadItems(String filename, Catalog catalog){
+    public void loadItems(Catalog catalog){
         if(itemsFile.exists()){
-            try(FileInputStream fis = new FileInputStream(filename);
+            try(FileInputStream fis = new FileInputStream("items.bin");
                 ObjectInputStream ois = new ObjectInputStream(fis)){
                 catalog.set_items((ArrayList<Item>)ois.readObject());
                 System.out.println("Loaded items from file");
