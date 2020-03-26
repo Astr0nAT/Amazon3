@@ -15,13 +15,14 @@ public class Program {
         Catalog catalog = new Catalog();
         Address shippingAddress;
         String paymentMethod;
+        ArrayList<User> users = new ArrayList<User>();
 
         manager.loadUsers(um);
         manager.loadItems(catalog);
 
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
-        manager.saveUsers("users.bin", um);
+        manager.saveUsers("users.bin", users);
 
         boolean addAnotherItem, dataRight;
         char choice;
