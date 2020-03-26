@@ -29,10 +29,10 @@ public class DataFile implements Data{
         }
     }
 
-    public static void saveUsers(String filename, ArrayList<User> users){
+    public void saveUsers(String filename, UserManager um){
         try(FileOutputStream fos = new FileOutputStream(filename);
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
-            oos.writeObject(users);
+            oos.writeObject(um.set_users(ArrayList<User> ));
         }
         catch(IOException e){
             System.out.println("IO-Exception");
@@ -93,12 +93,12 @@ public class DataFile implements Data{
         }
     }
 
-    public static void createUsersFile(ArrayList<User> users){
+    public void createUsersFile(ArrayList<User> users){
         createFile("users.bin");
         saveUsers("users.bin", users);
     }
 
-    public static void overwriteUsersFile(ArrayList<User> users){
+    public void overwriteUsersFile(ArrayList<User> users){
         deleteFile("users.bin");
         createUsersFile(users);
     }
@@ -108,7 +108,7 @@ public class DataFile implements Data{
         saveItems("items.bin", items);
     }
 
-    public static void overwriteItemsFile(ArrayList<User> items){
+    public void overwriteItemsFile(ArrayList<User> items){
         deleteFile("items.bin");
         createUsersFile(items);
     }
