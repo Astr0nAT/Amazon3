@@ -29,8 +29,9 @@ public class DataFile implements Data{
         }
     }
 
-    public void saveUsers(String filename, ArrayList<User> users){
-        try(FileOutputStream fos = new FileOutputStream(filename);
+    @Override
+    public void saveUsers(ArrayList<User> users){
+        try(FileOutputStream fos = new FileOutputStream("users.bin");
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(users);
         }
@@ -61,8 +62,9 @@ public class DataFile implements Data{
         }
     }
 
-    public static void saveItems(String filename, ArrayList<Item> items){
-        try(FileOutputStream fos = new FileOutputStream(filename);
+    @Override
+    public void saveItems(ArrayList<Item> items){
+        try(FileOutputStream fos = new FileOutputStream("items.bin");
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(items);
         }
@@ -93,35 +95,30 @@ public class DataFile implements Data{
         }
     }
 
-
-    public void createUsersFile(ArrayList<User> users){
-        createFile("users.bin");
-        saveUsers("users.bin", users);
-    }
-
-    public void overwriteUsersFile(ArrayList<User> users)
     @Override
     public boolean checkIfUserDataAvailable() {
         return false;
     }
 
-    public static void createUsersFile(ArrayList<User> users){
+    private void createUsersFile(ArrayList<User> users){
         createFile("users.bin");
-        saveUsers("users.bin", users);
+        saveUsers(users);
     }
 
-    private static void createItemsFile(ArrayList<Item> items){
+    private void overwriteUsersFile(ArrayList<User> users){
+        deleteFile("users.bin");
+        createUsersFile(users);
+    }
+
+    private void createItemsFile(ArrayList<Item> items){
         createFile("items.bin");
-        saveItems("items.bin", items);
+        saveItems(items);
     }
 
-
-    public void overwriteItemsFile(ArrayList<User> items){
-
-    public static void overwriteItemsFile(ArrayList<User> items){
-
+    private void overwriteItemsFile(ArrayList<Item> items){
         deleteFile("items.bin");
-        createUsersFile(items);
+        createItemsFile(items);
     }
 
 }
+
