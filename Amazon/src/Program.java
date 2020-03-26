@@ -19,8 +19,6 @@ public class Program {
         manager.loadUsers(um);
         manager.loadItems(catalog);
 
-
-
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
 

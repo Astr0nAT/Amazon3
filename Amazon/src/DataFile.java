@@ -93,21 +93,23 @@ public class DataFile implements Data{
         }
     }
 
+    @Override
+    public boolean checkIfUserDataAvailable() {
+        return false;
+    }
+
     public static void createUsersFile(ArrayList<User> users){
         createFile("users.bin");
         saveUsers("users.bin", users);
     }
-
     public static void overwriteUsersFile(ArrayList<User> users){
         deleteFile("users.bin");
         createUsersFile(users);
     }
-
     private static void createItemsFile(ArrayList<Item> items){
         createFile("items.bin");
         saveItems("items.bin", items);
     }
-
     public static void overwriteItemsFile(ArrayList<User> items){
         deleteFile("items.bin");
         createUsersFile(items);

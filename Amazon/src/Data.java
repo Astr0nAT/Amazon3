@@ -5,4 +5,6 @@ public interface Data {
 
     void loadUsers(UserManager um);
     void loadItems(Catalog catalog);
+
+    boolean checkIfUserDataAvailable();
 }
