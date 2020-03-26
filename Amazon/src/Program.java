@@ -197,6 +197,7 @@ public class Program {
     private static char showMainMenu(){
         System.out.println("Item menu ... i");
         System.out.println("User menu ... u");
+        System.out.println("Exit ........ e");
         System.out.print("Choice: ");
         return reader.next().toLowerCase().charAt(0);
     }
