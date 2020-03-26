@@ -22,7 +22,7 @@ public class Program {
 
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
-        manager.saveUsers("users.bin", users);
+        manager.saveUsers(users);
 
         boolean addAnotherItem, dataRight;
         char choice;
