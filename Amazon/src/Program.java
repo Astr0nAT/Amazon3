@@ -2,6 +2,7 @@ import models.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Program {
@@ -14,8 +15,6 @@ public class Program {
         Catalog catalog = new Catalog();
         Address shippingAddress;
         String paymentMethod;
-        ArrayList<User> users;
-        ArrayList<Item> items;
 
         manager.loadUsers(um);
         manager.loadItems(catalog);
@@ -24,6 +23,15 @@ public class Program {
         System.out.println(um.printCurrentUser());
 
         manager.loadShoppingcart(getCurrentShoppingCart(um), um);
+
+        um.add_user(new User(2, "Moritz", "Laichner", 28, 8, 2003, "mouw@laichner.com", Gender.male));
+        catalog.get_items().add(new Phone("testingNUMBER", 999.99, Category.Electronics,
+                "testingNAME", "testingBRAND", 9.99, "testingRESOLUTION",
+                new Random().nextInt(9999), OperatingSystem.EMUI) {
+        });
+
+        manager.saveUsers(um.get_users());
+        manager.saveItems(catalog.get_items());
 
         boolean addAnotherItem, dataRight;
         char choice;
@@ -78,10 +86,9 @@ public class Program {
         }
         // es wird immer eine fehler mit der exception ausgeworfen, sollte so aber funktionieren
          */
-        users = um.get_users();
-        items = catalog.get_items();
-        manager.saveUsers(users);
-        manager.saveItems(items);
+
+
+
         epicCountdown();
     }
 
