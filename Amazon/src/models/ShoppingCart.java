@@ -6,13 +6,13 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ShoppingCart implements Serializable {
-    private List<ItemCart> _items = new ArrayList<ItemCart>();
+    private ArrayList<ItemCart> _items = new ArrayList<ItemCart>();
     private double _totalPrice;
 
-    public List<ItemCart> get_items() {
+    public ArrayList<ItemCart> get_items() {
         return _items;
     }
-    public void set_items(List<ItemCart> items) {
+    public void set_items(ArrayList<ItemCart> items) {
         this._items = items;
     }
 
@@ -76,7 +76,7 @@ public class ShoppingCart implements Serializable {
         this(new ArrayList<ItemCart>());
     }
 
-    public ShoppingCart(List<ItemCart> items){
+    public ShoppingCart(ArrayList<ItemCart> items){
         set_items(items);
     }
 
