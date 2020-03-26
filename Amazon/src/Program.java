@@ -79,6 +79,7 @@ public class Program {
         // es wird immer eine fehler mit der exception ausgeworfen, sollte so aber funktionieren
          */
         users = um.get_users();
+        items = catalog.get_items();
         manager.saveUsers(users);
         manager.saveItems(items);
         epicCountdown();
