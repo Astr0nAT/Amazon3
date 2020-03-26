@@ -19,15 +19,6 @@ public class DataFile implements Data{
             System.out.println("IO-Exception");
         }
     }
-    public static void deleteFile(String filename) {
-        try{
-            Files.delete(Paths.get(filename));
-            System.out.println("File deleted!");
-        }
-        catch(IOException e){
-            System.out.println("File does not exist.");
-        }
-    }
 
     @Override
     public void saveUsers(ArrayList<User> users){
@@ -60,6 +51,15 @@ public class DataFile implements Data{
             createUsersFile(um.get_users());
             System.out.println("Created file with users to load (\"users.bin\").");
         }
+    }
+
+    @Override
+    public void saveShoppingcart(ArrayList<ItemCart> cartItems){
+
+    }
+    @Override
+    public void loadShoppingcart(ShoppingCart sc){
+
     }
 
     @Override
