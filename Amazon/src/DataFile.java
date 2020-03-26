@@ -105,19 +105,9 @@ public class DataFile implements Data{
         saveUsers(users);
     }
 
-    private void overwriteUsersFile(ArrayList<User> users){
-        deleteFile("users.bin");
-        createUsersFile(users);
-    }
-
     private void createItemsFile(ArrayList<Item> items){
         createFile("items.bin");
         saveItems(items);
-    }
-
-    private void overwriteItemsFile(ArrayList<Item> items){
-        deleteFile("items.bin");
-        createItemsFile(items);
     }
 
 }
