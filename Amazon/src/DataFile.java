@@ -64,11 +64,11 @@ public class DataFile implements Data{
     }
     @Override
     public void loadShoppingcart(ShoppingCart sc, UserManager um){
-        if(itemsFile.exists()){
+        if(scFile.exists()){
             try(FileInputStream fis = new FileInputStream("sc" + um.get_currentUser() + ".bin");
                 ObjectInputStream ois = new ObjectInputStream(fis)){
                 sc.set_items((ArrayList<ItemCart>)ois.readObject());
-                System.out.println("Loaded items from file");
+                System.out.println("Loaded shoppingcart from file");
             }
             catch(ClassNotFoundException e){
                 System.out.println("Class not found.");
