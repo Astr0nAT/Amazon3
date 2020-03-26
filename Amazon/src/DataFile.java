@@ -53,6 +53,15 @@ public class DataFile implements Data{
     }
 
     @Override
+    public void saveShoppingcart(ArrayList<ItemCart> cartItems){
+
+    }
+    @Override
+    public void loadShoppingcart(ShoppingCart sc){
+
+    }
+
+    @Override
     public void saveItems(ArrayList<Item> items){
         try(FileOutputStream fos = new FileOutputStream("items.bin");
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
