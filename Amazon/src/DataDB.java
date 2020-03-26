@@ -30,7 +30,7 @@ public class DataDB implements Data{
     }
 
     @Override
-    public void loadShoppingcart(ShoppingCart sc) {
+    public void loadShoppingcart(ShoppingCart sc, UserManager um) {
 
     }
 

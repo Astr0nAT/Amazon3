@@ -23,7 +23,7 @@ public class Program {
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
 
-        manager.loadShoppingcart(getCurrentShoppingCart(um));
+        manager.loadShoppingcart(getCurrentShoppingCart(um), um);
 
         boolean addAnotherItem, dataRight;
         char choice;
