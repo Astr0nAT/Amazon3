@@ -21,7 +21,8 @@ public class Program {
 
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
-        manager.saveUsers("users.bin", um);
+
+        manager.saveUsers(um.get_users());
 
         boolean addAnotherItem, dataRight;
         char choice;
