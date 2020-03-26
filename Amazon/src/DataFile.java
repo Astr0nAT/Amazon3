@@ -64,8 +64,11 @@ public class DataFile implements Data{
     }
     @Override
     public void loadShoppingcart(ShoppingCart sc, UserManager um){
-        if(itemsFile.exists()){
-            try(FileInputStream fis = new FileInputStream("sc" + um.get_currentUser() + ".bin");
+        int currentUser = um.get_currentUser();
+        String filename = "sc" + currentUser + ".bin";
+        File scFile = new File("./" + filename);
+        if(scFile.exists()){
+            try(FileInputStream fis = new FileInputStream(filename);
                 ObjectInputStream ois = new ObjectInputStream(fis)){
                 sc.set_items((ArrayList<ItemCart>)ois.readObject());
                 System.out.println("Loaded items from file");
@@ -76,6 +79,10 @@ public class DataFile implements Data{
             catch(IOException e){
                 System.out.println("IO-Exception");
             }
+        }
+        else{
+            createFile(filename);
+            System.out.println("File couldn't be found. New file created.");
         }
     }
 
