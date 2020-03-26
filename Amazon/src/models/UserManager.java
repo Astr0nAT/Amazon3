@@ -232,7 +232,7 @@ public class UserManager {
     }
 
     public UserManager(){
-        this(new ArrayList<User>(), 0);
+        this(null, 0);
     }
 
     public UserManager(ArrayList<User> users, int currentUser){

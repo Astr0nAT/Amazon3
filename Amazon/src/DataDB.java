@@ -1,17 +1,17 @@
 import models.Catalog;
 import models.UserManager;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DataDB implements Data{
 
-    // @Override
-    public boolean checkIfUserDataAvailable(UserManager um){
+    // This code is completely useless as it is. TODO implement full database support. Postponing for now.
+
+    @Override
+    public boolean checkIfUserDataAvailable(){
         try{
-            Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/amazon", "root", "root");
             System.out.println("Database connection successful!");
             return true;
@@ -22,14 +22,10 @@ public class DataDB implements Data{
         return false;
     }
 
-
     @Override
-    public void loadUsers(String filename, UserManager um) {
-
-    }
-
+    public void loadUsers(UserManager um) {}
     @Override
-    public void loadItems(String filename, Catalog catalog) {
+    public void loadItems(Catalog catalog) {
 
     }
 }
