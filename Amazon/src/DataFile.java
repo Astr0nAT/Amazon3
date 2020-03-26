@@ -58,7 +58,6 @@ public class DataFile implements Data{
     }
     @Override
     public void loadShoppingcart(ShoppingCart sc){
-
     }
 
     @Override

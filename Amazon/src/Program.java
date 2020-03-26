@@ -1,6 +1,5 @@
 import models.*;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -15,8 +14,8 @@ public class Program {
         Catalog catalog = new Catalog();
         Address shippingAddress;
         String paymentMethod;
-        ArrayList<User> users = new ArrayList<User>();
-        ArrayList<Item> items = new ArrayList<Item>();
+        ArrayList<User> users;
+        ArrayList<Item> items;
 
         manager.loadUsers(um);
         manager.loadItems(catalog);
@@ -24,7 +23,7 @@ public class Program {
         switchForStartup(showStartupMenu(), um);
         System.out.println(um.printCurrentUser());
 
-        manager.loadShoppingcart();
+        manager.loadShoppingcart(getCurrentShoppingCart(um));
 
         boolean addAnotherItem, dataRight;
         char choice;
@@ -492,7 +491,7 @@ public class Program {
          return value;
      }
 
-     private static ShoppingCart getCurrentUsersShoppingCart(UserManager um){
+     private static ShoppingCart getCurrentShoppingCart(UserManager um){
         return um.get_users().get(um.get_currentUser()).get_shoppingCart();
      }
 
