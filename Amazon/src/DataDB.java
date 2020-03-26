@@ -1,7 +1,4 @@
-import models.Catalog;
-import models.Item;
-import models.User;
-import models.UserManager;
+import models.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -33,12 +30,22 @@ public class DataDB implements Data{
     }
 
     @Override
+    public void loadShoppingcart(ShoppingCart sc) {
+
+    }
+
+    @Override
     public void saveUsers(ArrayList<User> users) {
 
     }
 
     @Override
     public void saveItems(ArrayList<Item> items) {
+
+    }
+
+    @Override
+    public void saveShoppingcart(ArrayList<ItemCart> cartItems, int currentUser) {
 
     }
 }

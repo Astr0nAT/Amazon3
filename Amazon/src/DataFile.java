@@ -53,8 +53,14 @@ public class DataFile implements Data{
     }
 
     @Override
-    public void saveShoppingcart(ArrayList<ItemCart> cartItems){
-
+    public void saveShoppingcart(ArrayList<ItemCart> cartItems, int currentUser){
+        try(FileOutputStream fos = new FileOutputStream("sc" + currentUser + ".bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos)){
+            oos.writeObject(cartItems);
+        }
+        catch(IOException e){
+            System.out.println("IO-Exception");
+        }
     }
     @Override
     public void loadShoppingcart(ShoppingCart sc){
