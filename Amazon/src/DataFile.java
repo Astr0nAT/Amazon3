@@ -119,11 +119,6 @@ public class DataFile implements Data{
         }
     }
 
-    @Override
-    public boolean checkIfUserDataAvailable() {
-        return false;
-    }
-
     private void createUsersFile(ArrayList<User> users){
         createFile("users.bin");
         saveUsers(users);
