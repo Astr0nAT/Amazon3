@@ -53,48 +53,46 @@ public class Address implements Serializable {
         this._addressID = idAddress;
     }
 
-    private transient static Scanner reader = new Scanner(System.in);
-
     public static Address create_address(int addressSize){
         String street, housenumber, zipcode, city, state;
 
         System.out.print("Street: ");
-        street = reader.next();
+        street = new Scanner(System.in).next();
 
         while(street.length() < 2){
             System.out.println("Street is too short!\n");
             System.out.print("Street: ");
-            street = reader.next();
+            street = new Scanner(System.in).next();
         }
 
         System.out.print("Housenumber: ");
-        housenumber = reader.next();
+        housenumber = new Scanner(System.in).next();
 
         System.out.print("Zipcode: ");
-        zipcode = reader.next();
+        zipcode = new Scanner(System.in).next();
 
         while(zipcode.length() < 4 || zipcode.length() > 5){
             System.out.println("Zipcode is wrong length!\n");
             System.out.print("Zipcode: ");
-            zipcode = reader.next();
+            zipcode = new Scanner(System.in).next();
         }
 
         System.out.print("City: ");
-        city = reader.next();
+        city = new Scanner(System.in).next();
 
         while(city.length() < 2){
             System.out.println("City is too short!\n");
             System.out.print("City: ");
-            city = reader.next();
+            city = new Scanner(System.in).next();
         }
 
         System.out.print("State: ");
-        state = reader.next();
+        state = new Scanner(System.in).next();
 
         while(state.length() < 2){
             System.out.println("State is too short!\n");
             System.out.print("State: ");
-            state = reader.next();
+            state = new Scanner(System.in).next();
         }
 
         return new Address(street, housenumber, zipcode, city, state, addressSize);

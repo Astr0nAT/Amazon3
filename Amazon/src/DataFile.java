@@ -41,6 +41,7 @@ public class DataFile implements Data{
                 System.out.println("Class not found.");
             }
             catch(IOException e){
+                e.printStackTrace();
                 System.out.println("IO-Exception");
             }
         }
@@ -53,12 +54,13 @@ public class DataFile implements Data{
     }
 
     @Override
-    public void saveShoppingcart(ArrayList<ItemCart> cartItems, int currentUser){
-        try(FileOutputStream fos = new FileOutputStream("sc" + currentUser + ".bin");
+    public void saveShoppingcart(ArrayList<ItemCart> cartItems, UserManager um){
+        try(FileOutputStream fos = new FileOutputStream("sc" + um.get_currentUser() + ".bin");
             ObjectOutputStream oos = new ObjectOutputStream(fos)){
             oos.writeObject(cartItems);
         }
         catch(IOException e){
+            e.printStackTrace();
             System.out.println("IO-Exception");
         }
     }
@@ -71,7 +73,7 @@ public class DataFile implements Data{
             try(FileInputStream fis = new FileInputStream(filename);
                 ObjectInputStream ois = new ObjectInputStream(fis)){
                 sc.set_items((ArrayList<ItemCart>)ois.readObject());
-                System.out.println("Loaded items from file");
+                System.out.println("Loaded shopping cart from file");
             }
             catch(ClassNotFoundException e){
                 System.out.println("Class not found.");
@@ -82,7 +84,7 @@ public class DataFile implements Data{
         }
         else{
             createFile(filename);
-            System.out.println("File couldn't be found. New file created.");
+            System.out.println("Shopping cart file not found. New file created.");
         }
     }
 
@@ -105,6 +107,7 @@ public class DataFile implements Data{
                 System.out.println("Loaded items from file");
             }
             catch(ClassNotFoundException e){
+                e.printStackTrace();
                 System.out.println("Class not found.");
             }
             catch(IOException e){

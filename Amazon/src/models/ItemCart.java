@@ -1,6 +1,8 @@
 package models;
 
-public class ItemCart {
+import java.io.Serializable;
+
+public class ItemCart implements Serializable {
 
     private Item _item;
     private int _amount;

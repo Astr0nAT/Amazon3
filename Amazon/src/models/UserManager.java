@@ -6,8 +6,6 @@ import java.util.Scanner;
 
 public class UserManager {
 
-    private transient static Scanner reader = new Scanner(System.in);
-
     private ArrayList<User> _users = new ArrayList<User>();
     private int _currentUser;
 
@@ -65,7 +63,7 @@ public class UserManager {
             repeat = false;
 
             System.out.print("Choose a User by index (User-Nr): ");
-            choiceUser = reader.nextInt();
+            choiceUser = new Scanner(System.in).nextInt();
 
             if((choiceUser > um.get_users().size() - 1) || (choiceUser < 0)){
                 System.out.println("Index out of bounds\n");
@@ -86,48 +84,48 @@ public class UserManager {
         System.out.println("Email ........... e");
         System.out.println("Gender .......... g\n");
         System.out.print("Choice: ");
-        return reader.next().toLowerCase().charAt(0);
+        return new Scanner(System.in).next().toLowerCase().charAt(0);
     }
 
     public static void editUser(char choice, User user){
         while(choice != 'f' && choice != 'l' && choice != 'b' && choice != 'e' && choice != 'g'){
             System.out.println("Wrong input!\n");
             System.out.print("Choice: ");
-            choice = reader.next().toLowerCase().charAt(0);
+            choice = new Scanner(System.in).next().toLowerCase().charAt(0);
         }
 
         switch(choice){
             case 'f':
                 System.out.println("Current firstname: "+ user.get_firstname());
                 System.out.print("New firstname: ");
-                user.set_firstname(reader.next());
+                user.set_firstname(new Scanner(System.in).next());
                 break;
             case 'l':
                 System.out.println("Current lastname: "+ user.get_lastname());
                 System.out.print("New lastname: ");
-                user.set_lastname(reader.next());
+                user.set_lastname(new Scanner(System.in).next());
                 break;
             case 'b':
                 Date birthday = new Date();
                 System.out.println("Current Birthday: "+ user.get_birthdate().toString());
                 System.out.print("New Birthyear: ");
-                birthday.set_year(reader.nextInt());
+                birthday.set_year(new Scanner(System.in).nextInt());
                 System.out.print("New Birthmonth: ");
-                birthday.set_month(reader.nextInt());
+                birthday.set_month(new Scanner(System.in).nextInt());
                 System.out.print("New Birthday: ");
-                birthday.set_day(reader.nextInt());
+                birthday.set_day(new Scanner(System.in).nextInt());
                 user.set_birthdate(birthday);
                 break;
             case 'e':
                 System.out.println("Current Email: "+ user.get_email());
                 System.out.print("New Email: ");
-                user.set_email(reader.next());
+                user.set_email(new Scanner(System.in).next());
                 break;
             case 'g':
                 char gender;
                 System.out.println("Current Gender: "+ user.get_gender());
                 System.out.print("New Gender [m (male), f (female) , n (not specified)]: ");
-                gender = reader.next().toLowerCase().charAt(0);
+                gender = new Scanner(System.in).next().toLowerCase().charAt(0);
                 if(gender == 'f'){
                     user.set_gender(Gender.female);
                 }

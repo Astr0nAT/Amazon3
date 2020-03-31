@@ -45,7 +45,8 @@ public class DataDB implements Data{
     }
 
     @Override
-    public void saveShoppingcart(ArrayList<ItemCart> cartItems, int currentUser) {
+    public void saveShoppingcart(ArrayList<ItemCart> cartItems, UserManager um) {
 
     }
+
 }

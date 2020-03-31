@@ -24,12 +24,6 @@ public class Program {
 
         manager.loadShoppingcart(getCurrentShoppingCart(um), um);
 
-        um.add_user(new User(new Random().nextInt(99999), "Moritz", "Laichner", 28, 8, 2003, "mouw@laichner.com", Gender.male));
-        catalog.get_items().add(new Phone("testingNUMBER", 999.99, Category.Electronics,
-                "testingNAME", "testingBRAND", 9.99, "testingRESOLUTION",
-                new Random().nextInt(9999), OperatingSystem.EMUI) {
-        });
-
         manager.saveUsers(um.get_users());
         manager.saveItems(catalog.get_items());
 
@@ -43,6 +37,7 @@ public class Program {
 
                 if(um.get_users().get(um.get_currentUser()).get_shoppingCart().get_items().size() > 0){
                     do {
+                        manager.saveShoppingcart(getCurrentShoppingCart(um).get_items(), um);
                         System.out.print("Proceed to check out? [y/n]: ");
                         choice = reader.next().toLowerCase().charAt(0);
                         if (choice != 'y' && choice != 'n') {
@@ -203,7 +198,7 @@ public class Program {
     }
 
     private static void switchForMain(char choice, Catalog catalog, ShoppingCart sc, UserManager um){
-        while(choice != 'i' && choice != 'u'){
+        while(choice != 'i' && choice != 'u' && choice != 'e'){
             System.out.println("Wrong input!\n");
             System.out.print("Choice: ");
             choice = reader.next().toLowerCase().charAt(0);
@@ -217,6 +212,8 @@ public class Program {
             case 'u':
                 switchForUser(showUserMenu(), um);
                 break;
+            case 'e':
+                epicCountdown();
         }
     }
 
