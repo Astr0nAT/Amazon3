@@ -1,12 +1,11 @@
 package models;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class UserManager {
 
-    private ArrayList<User> _users = new ArrayList<User>();
+    private ArrayList<User> _users;
     private int _currentUser;
 
     public int get_currentUser() {
@@ -26,16 +25,9 @@ public class UserManager {
     public void add_user(User user){
         this.get_users().add(user);
     }
-    public void remove_user(int userNumber){
-        for(User u : this.get_users()){
-            if(u.get_userID() == userNumber){
-                this.get_users().remove(u);
-            }
-        }
-    }
 
     public ArrayList<User> createExampleUsers(){
-        ArrayList<User> exampleUsers = new ArrayList<User>();
+        ArrayList<User> exampleUsers = new ArrayList<>();
         User user1 = new User(0, "Philipp", "Schuler", 13, 5, 2003, "schulerp03@gmail.com", Gender.male);
         Address address1 = new Address("Kreuzbichlstraße", "57", "6112", "Wattens", "Austria", 0);
         Address address2 = new Address("Anichstraße", "26-28", "6020", "Innsbruck", "Austria", 1);
@@ -247,29 +239,29 @@ public class UserManager {
 
     @Override
     public String toString(){
-        String s = "------------------------\n";
+        StringBuilder s = new StringBuilder("------------------------\n");
 
-        s += "Current user: " + this.get_currentUser() + "\n------------------------\n";
+        s.append("Current user: ").append(this.get_currentUser()).append("\n------------------------\n");
 
         for(User u : _users){
-            s = s + u.toString();
-            s += "------------------------\n";
+            s.append(u.toString());
+            s.append("------------------------\n");
         }
 
-        return s;
+        return s.toString();
     }
 
     public String toStringShort(){
-        String s = "------------------------\n";
+        StringBuilder s = new StringBuilder("------------------------\n");
 
-        s += "Current user ID: " + this.get_currentUser() + "\n------------------------\n";
+        s.append("Current user ID: ").append(this.get_currentUser()).append("\n------------------------\n");
 
         for(User u : _users){
-            s = s + u.toStringShort();
-            s += "------------------------\n";
+            s.append(u.toStringShort());
+            s.append("------------------------\n");
         }
 
-        return s;
+        return s.toString();
     }
 
 }

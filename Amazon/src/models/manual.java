@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class manual extends Book {
-    private List<Language> _languages = new ArrayList<Language>();
+    private List<Language> _languages = new ArrayList<>();
 
     public List<Language> get_languages() {
         return _languages;
@@ -23,28 +23,20 @@ public class manual extends Book {
 
     @Override
     public String toString() {
-        String s = super.toString();
+        StringBuilder s = new StringBuilder(super.toString());
 
-        s += "Languages: ";
-
-        int counter = 0;
-
-        /*
-        for(Language l : this.get_languages()){
-            s += l + ", ";
-        }
-        */
+        s.append("Languages: ");
 
         for(int i = 0; i<this.get_languages().size(); i++){
 
-            s += this.get_languages().get(i);
+            s.append(this.get_languages().get(i));
             if(i + 1 < this.get_languages().size()){
-                s += ", ";
+                s.append(", ");
             }
         }
 
-        s += "\n";
+        s.append("\n");
 
-        return s;
+        return s.toString();
     }
 }

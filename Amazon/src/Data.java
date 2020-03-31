@@ -11,6 +11,4 @@ public interface Data {
     void loadItems(Catalog catalog);
     void loadShoppingcart(ShoppingCart sc, UserManager um);
 
-    boolean checkIfUserDataAvailable();
-
 }

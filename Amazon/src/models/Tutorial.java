@@ -10,8 +10,6 @@ public class Tutorial extends Video {
         if(rating > 0 && rating <= 5)this._rating = rating;
     }
 
-    public Tutorial(){this("", 0.0, Category.notSpecified, "", "", 0,
-            0.0);}
     public Tutorial(String itemNumber, double price, Category category, String name, String brand,
                     int lenghtInSeconds, double rating){
         super(itemNumber, price, category, name, brand, lenghtInSeconds);

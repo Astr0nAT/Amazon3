@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Catalog {
-    private ArrayList<Item> _items = new ArrayList<Item>();
+    private ArrayList<Item> _items = new ArrayList<>();
 
     public ArrayList<Item> get_items() {
         return _items;
@@ -14,7 +14,7 @@ public class Catalog {
     }
 
     public Catalog(){
-        this(new ArrayList<Item>());
+        this(new ArrayList<>());
     }
 
     public Catalog(ArrayList<Item> items){
@@ -23,18 +23,18 @@ public class Catalog {
 
     @Override
     public String toString(){
-        String s = "------------------------\n";
+        StringBuilder s = new StringBuilder("------------------------\n");
 
         for(Item i : this.get_items()){
-            s = s + i.toString();
-            s = s + "------------------------\n";
+            s.append(i.toString());
+            s.append("------------------------\n");
         }
 
-        return s;
+        return s.toString();
     }
 
     public ArrayList<Item> createExampleItems(){
-        ArrayList<Item> exampleItems = new ArrayList<Item>();
+        ArrayList<Item> exampleItems = new ArrayList<>();
         Item laptop = new Laptop("EL001", 699.00, Category.Electronics, "Aspire 5", "Acer", 2.76, "1920x1080", 4100, false);
         Item phone = new Phone ( "EL002", 549.00, Category.Electronics,"iPhone 8", "Apple", 0.148, "1920x1080" ,3100, OperatingSystem.iOS);
         Item professionalFilm = new ProfessionalFilm("VD001", 12.99, Category.Video, "Guardians of the Galaxy", "Marvel Studios", 7500, "James Gunn");

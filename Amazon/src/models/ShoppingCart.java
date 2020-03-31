@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ShoppingCart implements Serializable {
-    private ArrayList<ItemCart> _items = new ArrayList<ItemCart>();
-    private double _totalPrice;
+    private ArrayList<ItemCart> _items = new ArrayList<>();
 
     public ArrayList<ItemCart> get_items() {
         return _items;
@@ -16,7 +15,7 @@ public class ShoppingCart implements Serializable {
     }
 
     public double get_totalPrice() {
-        _totalPrice = 0.0;
+        double _totalPrice = 0.0;
 
         for(ItemCart i : _items){
             _totalPrice = _totalPrice + i.get_priceOfAll();
@@ -70,7 +69,7 @@ public class ShoppingCart implements Serializable {
     }
 
     public ShoppingCart(){
-        this(new ArrayList<ItemCart>());
+        this(new ArrayList<>());
     }
 
     public ShoppingCart(ArrayList<ItemCart> items){
@@ -79,16 +78,16 @@ public class ShoppingCart implements Serializable {
 
     @Override
     public String toString(){
-        String s = "------------------------\n";
+        StringBuilder s = new StringBuilder("------------------------\n");
 
         for(ItemCart i : _items){
-            s = s + i.toString();
-            s += "------------------------\n";
+            s.append(i.toString());
+            s.append("------------------------\n");
         }
 
-        s += "Total shopping cart price: " + this.get_totalPrice() + "\n";
+        s.append("Total shopping cart price: ").append(this.get_totalPrice()).append("\n");
 
-        return s;
+        return s.toString();
     }
 
 }

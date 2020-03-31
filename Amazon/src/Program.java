@@ -2,7 +2,6 @@ import models.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Program {
@@ -64,25 +63,6 @@ public class Program {
             dataRight = dataRightQuery();
         }while (!dataRight);
         System.out.println("Your order was successful");
-
-        String fullinfo = um.get_users().get(um.get_currentUser()).toStringAddressless() + "\n" +
-                shippingAddress.toString() + "\n" +
-                um.get_users().get(um.get_currentUser()).get_shoppingCart().toString() + "\n" +
-                "Payment method: " + paymentMethod + "\n";
-
-        /*
-        // String "fullinfo" wäre der komplette Inhalt der Email mit allen Informationen
-        try {
-            System.out.println("Trying to send email.\n");
-            SendEmail.sendMail(um.get_users().get(um.get_currentUser()).get_email(), fullinfo);
-        } catch(MessagingException m){
-            System.out.println("Failed to send email");
-            System.out.println(m.toString());
-        }
-        // es wird immer eine fehler mit der exception ausgeworfen, sollte so aber funktionieren
-         */
-
-
 
         epicCountdown();
     }

@@ -41,7 +41,6 @@ public class DataFile implements Data{
                 System.out.println("Class not found.");
             }
             catch(IOException e){
-                e.printStackTrace();
                 System.out.println("IO-Exception");
             }
         }
@@ -60,7 +59,6 @@ public class DataFile implements Data{
             oos.writeObject(cartItems);
         }
         catch(IOException e){
-            e.printStackTrace();
             System.out.println("IO-Exception");
         }
     }
@@ -107,7 +105,6 @@ public class DataFile implements Data{
                 System.out.println("Loaded items from file");
             }
             catch(ClassNotFoundException e){
-                e.printStackTrace();
                 System.out.println("Class not found.");
             }
             catch(IOException e){

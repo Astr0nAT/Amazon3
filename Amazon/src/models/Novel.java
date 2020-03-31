@@ -12,8 +12,6 @@ public class Novel extends Book {
         this._author = author;
     }
 
-    public Novel(){this("",0.0,Category.notSpecified,"","",0.0,0,
-            "");}
     public Novel(String itemNumber, double price, Category category, String name, String brand, double weight,
                  int numberPages, String author){
         super(itemNumber, price, category, name, brand, weight, numberPages);

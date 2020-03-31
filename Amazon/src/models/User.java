@@ -9,7 +9,7 @@ public class User implements Serializable {
     private String _firstname;
     private String _lastname;
     private Date _birthdate;
-    private List<Address> _addresses = new ArrayList<Address>();
+    private List<Address> _addresses = new ArrayList<>();
     private String _email;
     private Gender _gender;
 
@@ -85,16 +85,16 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        String s = "User-Nr: " + this.get_userID() + "\n" +
+        StringBuilder s = new StringBuilder("User-Nr: " + this.get_userID() + "\n" +
                 "Name: " + this.get_firstname() + " " + this.get_lastname() + "\n" +
                 "Birthdate: " + this.get_birthdate().toString() + "\n" +
                 "Gender: " + this.get_gender() + "\n" +
-                "Email: " + this.get_email() + "\n";
+                "Email: " + this.get_email() + "\n");
 
         for (Address a : this.get_addresses()) {
-            s += "\n" + a.toString();
+            s.append("\n").append(a.toString());
         }
-        return s;
+        return s.toString();
     }
 
     public String toStringAddressless(){
@@ -111,9 +111,9 @@ public class User implements Serializable {
     }
 
     public String toAddressString(UserManager um){
-        String s = "";
+        StringBuilder s = new StringBuilder();
         for(Address a : um.get_users().get(um.get_currentUser()).get_addresses()){
-            s += "------------------------\n" + a.toString();
+            s.append("------------------------\n").append(a.toString());
         }
 
         return s + "------------------------\n";
