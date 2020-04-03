@@ -16,6 +16,11 @@ public class DataFile implements Data{
             Files.createFile(Paths.get(filename));
         }
         catch(IOException e){
+            // besser wäre hier, dass die Exception an den Aufrufer weitergeleitet wird
+            // und nicht in dieser Methode behandelt wird
+            // Lösung: kein Exceptionhandling +
+            //      public static void createFile(String filename) throws IOException{ ...
+            //  würde für alle Methoden in dieser Klasse gelten
             System.out.println("IO-Exception");
         }
     }
