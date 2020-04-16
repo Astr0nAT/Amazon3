@@ -11,18 +11,14 @@ public class DataFile implements Data{
     final static File usersFile = new File("./" + usersFilename);
     final static File itemsFile = new File("./" + itemsFilename);
 
-    public static void createFile(String filename){
-        try{
+    public static void createFile(String filename) throws IOException{
             Files.createFile(Paths.get(filename));
-        }
-        catch(IOException e){
+
             // besser wäre hier, dass die Exception an den Aufrufer weitergeleitet wird
             // und nicht in dieser Methode behandelt wird
             // Lösung: kein Exceptionhandling +
             //      public static void createFile(String filename) throws IOException{ ...
             //  würde für alle Methoden in dieser Klasse gelten
-            System.out.println("IO-Exception");
-        }
     }
     @Override
     public void saveUsers(ArrayList<User> users){
@@ -86,8 +82,13 @@ public class DataFile implements Data{
             }
         }
         else{
-            createFile(filename);
-            System.out.println("Shopping cart file not found. New file created.");
+            try{
+                createFile(filename);
+                System.out.println("Shopping cart file not found. New file created.");
+            }
+            catch(IOException e){
+                System.out.println("IOException");
+            }
         }
     }
 
@@ -125,12 +126,23 @@ public class DataFile implements Data{
     }
 
     private void createUsersFile(ArrayList<User> users){
-        createFile("users.bin");
+        try{
+            createFile("users.bin");
+        }
+        catch(IOException e){
+            System.out.println("IOException");
+        }
         saveUsers(users);
     }
 
     private void createItemsFile(ArrayList<Item> items){
-        createFile("items.bin");
+        try{
+            createFile("items.bin");
+        }
+        catch(IOException e){
+            System.out.println("IOException");
+        }
+
         saveItems(items);
     }
 
